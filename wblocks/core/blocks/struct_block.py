@@ -211,6 +211,11 @@ class BaseStructBlock(Block):
         # descendant block type
         icon = "placeholder"
 
+    def customise_block(self, **kwargs):
+        """Method to impement on particular blocks to customise form fields"""
+        for name, child_block in self.child_blocks.items():
+            child_block.customise_block(**kwargs)
+
 
 class StructBlock(six.with_metaclass(DeclarativeSubBlocksMetaclass, BaseStructBlock)):
     pass

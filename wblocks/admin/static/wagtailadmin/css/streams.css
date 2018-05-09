@@ -292,7 +292,7 @@ a.button.button-small{line-height:1.85em}
 .chooser.blank .unchosen{display:block}
 
 @media screen and (min-width:50em){
-  label{box-sizing:border-box;display:inline;float:left;width:16.66667%}
+  .sequence-container label{box-sizing:border-box;display:inline;float:left;width:16.66667%}
   .boolean_field label,.image_field label,.model_choice_field label,.model_multiple_choice_field label,.radio_select label{padding-top:0}
   .model_choice_field.select label{padding-top:1.2em}
   .help{opacity:1}
@@ -300,7 +300,7 @@ a.button.button-small{line-height:1.85em}
   .field{box-sizing:border-box;display:block;margin-right:auto;margin-left:auto;padding-right:0;padding-left:0}
   .field:after,.field:before{content:" ";display:table}
   .field:after{clear:both}
-  .field-content{box-sizing:border-box;display:inline;width:83.33333%;padding-right:0}
+  .field-content{box-sizing:border-box;display:inline;width:90%;padding-right:0}
   .field-content{float:left;padding-left:0}
   .label-above .field>.field-content,.label-above .field>label{display:block;padding:0 0 .8em;float:none;width:auto}
 }
@@ -497,7 +497,6 @@ li.sequence-member .fields>li{position:relative}
   .title textarea{font-size:2em}
 
 
-
 /* django-admin */
 ul.sequence{position:relative}
 form .aligned ul.sequence{margin-left: 0px; padding: 0px;} /* sakkada */
@@ -528,3 +527,7 @@ form .aligned .button.bicolor {padding: 0 1.4em 0 3.7em;}
   padding-left: 1.5%;
   padding-bottom: 3%;
 }
+
+.wide input,
+ .wide textarea{font-size:1em; width: 90%;}
+

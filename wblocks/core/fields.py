@@ -35,7 +35,6 @@ class Creator(object):
         return obj.__dict__[self.field.name]
 
     def __set__(self, obj, value):
-        raise
         obj.__dict__[self.field.name] = self.field.to_python(value)
 
 

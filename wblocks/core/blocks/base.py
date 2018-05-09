@@ -1,3 +1,4 @@
+import copy
 import collections
 from importlib import import_module
 
@@ -415,6 +416,10 @@ class Block(six.with_metaclass(BaseBlock, object)):
     # but Python 2 won't, and we'd like the behaviour to be consistent on both.
     __hash__ = None
 
+    def customise_block(self, **kwargs):
+        """Method to impement on particular blocks to customise form fields"""
+        pass
+
 
 @python_2_unicode_compatible
 class BoundBlock(object):
@@ -510,7 +515,10 @@ class BlockWidget(forms.Widget):
             """ % (js_initializer, name)
         else:
             js_snippet = ''
-        return mark_safe(bound_block.render_form() + js_snippet)
+        # todo: allow conditionally rendering html declarations
+        all_html_declarations = self.block_def.all_html_declarations()
+        return mark_safe(bound_block.render_form() + js_snippet +
+                         all_html_declarations)
 
     def render(self, name, value, attrs=None):
         return self.render_with_errors(name, value, attrs=attrs, errors=None)
@@ -540,6 +548,15 @@ class BlockField(forms.Field):
 
     def clean(self, value):
         return self.block.clean(value)
+
+    def customise_block(self, **kwargs):
+        if not kwargs:
+            return
+        if not hasattr(self, 'block_original'):
+            self.block_original = self.block
+            self.block = copy.deepcopy(self.block)
+            self.widget.block_def = self.block
+        self.block.customise_block(**kwargs)
 
 
 DECONSTRUCT_ALIASES = {

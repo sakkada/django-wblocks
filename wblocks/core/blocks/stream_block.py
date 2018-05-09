@@ -322,6 +322,11 @@ class BaseStreamBlock(Block):
         max_num = None
         block_counts = {}
 
+    def customise_block(self, **kwargs):
+        """Method to impement on particular blocks to customise form fields"""
+        for name, child_block in self.child_blocks.items():
+            child_block.customise_block(**kwargs)
+
 
 class StreamBlock(six.with_metaclass(DeclarativeSubBlocksMetaclass, BaseStreamBlock)):
     pass

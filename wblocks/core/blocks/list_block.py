@@ -180,6 +180,10 @@ class ListBlock(Block):
         # descendant block type
         icon = "placeholder"
 
+    def customise_block(self, **kwargs):
+        """Method to impement on particular blocks to customise form fields"""
+        self.child_block.customise_block(**kwargs)
+
 
 DECONSTRUCT_ALIASES = {
     ListBlock: 'wblocks.core.blocks.ListBlock',
