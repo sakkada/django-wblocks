@@ -91,7 +91,7 @@ class FieldBlock(Block):
         # No icon specified here, because that depends on the purpose that the
         # block is being used for. Feel encouraged to specify an icon in your
         # descendant block type
-        icon = "placeholder"
+        icon = 'placeholder'
         default = None
 
 
@@ -135,19 +135,19 @@ class TextBlock(FieldBlock):
         return [force_text(value)]
 
     class Meta:
-        icon = "pilcrow"
+        icon = 'pilcrow'
 
 
 class BlockQuoteBlock(TextBlock):
 
     def render_basic(self, value, context=None):
         if value:
-            return format_html('<blockquote>{0}</blockquote>', value)
+            return format_html(u'<blockquote>{0}</blockquote>', value)
         else:
             return ''
 
     class Meta:
-        icon = "openquote"
+        icon = 'openquote'
 
 
 class FloatBlock(FieldBlock):
@@ -162,7 +162,7 @@ class FloatBlock(FieldBlock):
         super(FloatBlock, self).__init__(*args, **kwargs)
 
     class Meta:
-        icon = "plus-inverse"
+        icon = 'plus-inverse'
 
 
 class DecimalBlock(FieldBlock):
@@ -180,7 +180,7 @@ class DecimalBlock(FieldBlock):
         super(DecimalBlock, self).__init__(*args, **kwargs)
 
     class Meta:
-        icon = "plus-inverse"
+        icon = 'plus-inverse'
 
 
 class RegexBlock(FieldBlock):
@@ -198,7 +198,7 @@ class RegexBlock(FieldBlock):
         super(RegexBlock, self).__init__(*args, **kwargs)
 
     class Meta:
-        icon = "code"
+        icon = 'code'
 
 
 class URLBlock(FieldBlock):
@@ -213,7 +213,7 @@ class URLBlock(FieldBlock):
         super(URLBlock, self).__init__(**kwargs)
 
     class Meta:
-        icon = "site"
+        icon = 'site'
 
 
 class BooleanBlock(FieldBlock):
@@ -227,7 +227,7 @@ class BooleanBlock(FieldBlock):
         super(BooleanBlock, self).__init__(**kwargs)
 
     class Meta:
-        icon = "tick-inverse"
+        icon = 'tick-inverse'
 
 
 class DateBlock(FieldBlock):
@@ -260,7 +260,7 @@ class DateBlock(FieldBlock):
             return parse_date(value)
 
     class Meta:
-        icon = "date"
+        icon = 'date'
 
 
 class TimeBlock(FieldBlock):
@@ -283,7 +283,7 @@ class TimeBlock(FieldBlock):
             return parse_time(value)
 
     class Meta:
-        icon = "time"
+        icon = 'time'
 
 
 class DateTimeBlock(FieldBlock):
@@ -309,7 +309,7 @@ class DateTimeBlock(FieldBlock):
             return parse_datetime(value)
 
     class Meta:
-        icon = "date"
+        icon = 'date'
 
 
 class EmailBlock(FieldBlock):
@@ -321,7 +321,7 @@ class EmailBlock(FieldBlock):
         super(EmailBlock, self).__init__(**kwargs)
 
     class Meta:
-        icon = "mail"
+        icon = 'mail'
 
 
 class IntegerBlock(FieldBlock):
@@ -337,7 +337,7 @@ class IntegerBlock(FieldBlock):
         super(IntegerBlock, self).__init__(**kwargs)
 
     class Meta:
-        icon = "plus-inverse"
+        icon = 'plus-inverse'
 
 
 class ChoiceBlock(FieldBlock):
@@ -445,7 +445,7 @@ class ChoiceBlock(FieldBlock):
         # No icon specified here, because that depends on the purpose that the
         # block is being used for. Feel encouraged to specify an icon in your
         # descendant block type
-        icon = "placeholder"
+        icon = 'placeholder'
 
 
 # class RichTextBlock(FieldBlock):
@@ -493,7 +493,7 @@ class ChoiceBlock(FieldBlock):
 #        return [force_text(value.source)]
 #
 #    class Meta:
-#        icon = "doc-full"
+#        icon = 'doc-full'
 
 
 class RawHTMLBlock(FieldBlock):
@@ -591,7 +591,7 @@ class ChooserBlock(FieldBlock):
         # No icon specified here, because that depends on the purpose that the
         # block is being used for. Feel encouraged to specify an icon in your
         # descendant block type
-        icon = "placeholder"
+        icon = 'placeholder'
 
 
 # class PageChooserBlock(ChooserBlock):
@@ -663,7 +663,7 @@ class ChooserBlock(FieldBlock):
 #         return name, args, kwargs
 # 
 #     class Meta:
-#         icon = "redirect"
+#         icon = 'redirect'
 
 
 # Ensure that the blocks defined here get deconstructed as wagtailcore.blocks.FooBlock

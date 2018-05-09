@@ -20,10 +20,10 @@ def js_dict(d):
     wrapped in parentheses, in case some awkward git decides to use the comma operator...)
     """
     dict_items = [
-        indent("'%s': (%s)" % (k, v))
+        indent(u"'%s': (%s)" % (k, v))
         for (k, v) in d.items()
     ]
-    return "{\n%s\n}" % ',\n'.join(dict_items)
+    return u"{\n%s\n}" % ',\n'.join(dict_items)
 
 
 def accepts_kwarg(func, kwarg):

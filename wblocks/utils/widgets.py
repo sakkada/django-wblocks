@@ -18,8 +18,8 @@ class WidgetWithScript(Widget):
         widget_html = self.render_html(name, value, attrs)
 
         js = self.render_js_init(id_, name, value)
-        out = '{0}<script>{1}</script>'.format(widget_html, js)
+        out = u'{0}<script>{1}</script>'.format(widget_html, js)
         return mark_safe(out)
 
     def render_js_init(self, id_, name, value):
-        return ''
+        return u''

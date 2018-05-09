@@ -59,7 +59,7 @@ class ListBlock(Block):
         list_member_html = self.render_list_member(self.child_block.get_default(), '__PREFIX__', '')
 
         return format_html(
-            '<script type="text/template" id="{0}-newmember">{1}</script>',
+            u'<script type="text/template" id="{0}-newmember">{1}</script>',
             self.definition_prefix, mark_safe(escape_script(list_member_html))
         )
 
@@ -153,13 +153,13 @@ class ListBlock(Block):
 
     def render_basic(self, value, context=None):
         children = format_html_join(
-            '\n', '<li>{0}</li>',
+            u'\n', u'<li>{0}</li>',
             [
                 (self.child_block.render(child_value, context=context),)
                 for child_value in value
             ]
         )
-        return format_html("<ul>{0}</ul>", children)
+        return format_html(u'<ul>{0}</ul>', children)
 
     def get_searchable_content(self, value):
         content = []
@@ -178,7 +178,7 @@ class ListBlock(Block):
         # No icon specified here, because that depends on the purpose that the
         # block is being used for. Feel encouraged to specify an icon in your
         # descendant block type
-        icon = "placeholder"
+        icon = 'placeholder'
 
     def customise_block(self, **kwargs):
         """Method to impement on particular blocks to customise form fields"""

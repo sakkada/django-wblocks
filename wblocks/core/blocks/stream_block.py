@@ -77,7 +77,7 @@ class BaseStreamBlock(Block):
 
     def html_declarations(self):
         return format_html_join(
-            '\n', '<script type="text/template" id="{0}-newmember-{1}">{2}</script>',
+            u'\n', u'<script type="text/template" id="{0}-newmember-{1}">{2}</script>',
             [
                 (
                     self.definition_prefix,
@@ -116,7 +116,7 @@ class BaseStreamBlock(Block):
             'childBlocks': '[\n%s\n]' % ',\n'.join(child_blocks),
         }
 
-        return "StreamBlock(%s)" % js_dict(opts)
+        return 'StreamBlock(%s)' % js_dict(opts)
 
     def render_form(self, value, prefix='', errors=None):
         error_dict = {}
@@ -274,7 +274,7 @@ class BaseStreamBlock(Block):
 
     def render_basic(self, value, context=None):
         return format_html_join(
-            '\n', '<div class="block-{1}">{0}</div>',
+            u'\n', u'<div class="block-{1}">{0}</div>',
             [
                 (child.render(context=context), child.block_type)
                 for child in value
@@ -315,7 +315,7 @@ class BaseStreamBlock(Block):
         # No icon specified here, because that depends on the purpose that the
         # block is being used for. Feel encouraged to specify an icon in your
         # descendant block type
-        icon = "placeholder"
+        icon = 'placeholder'
         default = []
         required = True
         min_num = None

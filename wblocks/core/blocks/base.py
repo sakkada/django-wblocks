@@ -46,7 +46,7 @@ class Block(six.with_metaclass(BaseBlock, object)):
 
     class Meta(object):
         label = None
-        icon = "placeholder"
+        icon = 'placeholder'
         classname = None
         group = ''
 
@@ -123,7 +123,7 @@ class Block(six.with_metaclass(BaseBlock, object)):
         (More precisely, they must either be definition_prefix itself, or begin with definition_prefix
         followed by a '-' character)
         """
-        return ''
+        return u''
 
     def js_initializer(self):
         """
@@ -339,10 +339,10 @@ class Block(six.with_metaclass(BaseBlock, object)):
         module = import_module(module_name)
         if not hasattr(module, name):
             raise ValueError(
-                "Could not find object %s in %s.\n"
-                "Please note that you cannot serialize things like inner "
-                "classes. Please move the object into the main module "
-                "body to use migrations.\n"
+                u"Could not find object %s in %s.\n"
+                u"Please note that you cannot serialize things like inner "
+                u"classes. Please move the object into the main module "
+                u"body to use migrations.\n"
                 % (name, module_name))
 
         # if the module defines a DECONSTRUCT_ALIASES dictionary, see if the class has an entry in there;
@@ -350,7 +350,7 @@ class Block(six.with_metaclass(BaseBlock, object)):
         try:
             path = module.DECONSTRUCT_ALIASES[self.__class__]
         except (AttributeError, KeyError):
-            path = '%s.%s' % (module_name, name)
+            path = u'%s.%s' % (module_name, name)
 
         return (
             path,

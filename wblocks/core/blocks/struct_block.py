@@ -71,7 +71,7 @@ class BaseStructBlock(Block):
         if not self.child_js_initializers:
             return None
 
-        return "StructBlock(%s)" % js_dict(self.child_js_initializers)
+        return u'StructBlock(%s)' % js_dict(self.child_js_initializers)
 
     @property
     def media(self):
@@ -198,8 +198,8 @@ class BaseStructBlock(Block):
         return errors
 
     def render_basic(self, value, context=None):
-        return format_html('<dl>\n{}\n</dl>', format_html_join(
-            '\n', '    <dt>{}</dt>\n    <dd>{}</dd>', value.items()))
+        return format_html(u'<dl>\n{}\n</dl>', format_html_join(
+            u'\n', u'    <dt>{}</dt>\n    <dd>{}</dd>', value.items()))
 
     class Meta:
         default = {}
@@ -209,7 +209,7 @@ class BaseStructBlock(Block):
         # No icon specified here, because that depends on the purpose that the
         # block is being used for. Feel encouraged to specify an icon in your
         # descendant block type
-        icon = "placeholder"
+        icon = 'placeholder'
 
     def customise_block(self, **kwargs):
         """Method to impement on particular blocks to customise form fields"""
