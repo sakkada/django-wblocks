@@ -35,8 +35,8 @@ class ListBlock(Block):
     @property
     def media(self):
         return forms.Media(js=[
-            static('wagtailadmin/js/blocks/sequence.js'),
-            static('wagtailadmin/js/blocks/list.js')
+            static('wblocks/js/blocks/sequence.js'),
+            static('wblocks/js/blocks/list.js')
         ])
 
     def render_list_member(self, value, prefix, index, errors=None):
@@ -45,7 +45,7 @@ class ListBlock(Block):
         to manage ID/deleted state, delete/reorder buttons, and the child block's own form HTML.
         """
         child = self.child_block.bind(value, prefix="%s-value" % prefix, errors=errors)
-        return render_to_string('wagtailadmin/block_forms/list_member.html', {
+        return render_to_string('wblocks/block_forms/list_member.html', {
             'prefix': prefix,
             'child': child,
             'index': index,
@@ -87,7 +87,7 @@ class ListBlock(Block):
             for (i, child_val) in enumerate(value)
         ]
 
-        return render_to_string('wagtailadmin/block_forms/list.html', {
+        return render_to_string('wblocks/block_forms/list.html', {
             'help_text': getattr(self.meta, 'help_text', None),
             'prefix': prefix,
             'list_members_html': list_members_html,

@@ -75,7 +75,7 @@ class BaseStructBlock(Block):
 
     @property
     def media(self):
-        return forms.Media(js=[static('wagtailadmin/js/blocks/struct.js')])
+        return forms.Media(js=[static('wblocks/js/blocks/struct.js')])
 
     def get_form_context(self, value, prefix='', errors=None):
         if errors:
@@ -204,7 +204,7 @@ class BaseStructBlock(Block):
     class Meta:
         default = {}
         form_classname = 'struct-block'
-        form_template = 'wagtailadmin/block_forms/struct.html'
+        form_template = 'wblocks/block_forms/struct.html'
         value_class = StructValue
         # No icon specified here, because that depends on the purpose that the
         # block is being used for. Feel encouraged to specify an icon in your

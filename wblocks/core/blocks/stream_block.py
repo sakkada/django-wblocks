@@ -66,7 +66,7 @@ class BaseStreamBlock(Block):
         """
         child_block = self.child_blocks[block_type_name]
         child = child_block.bind(value, prefix="%s-value" % prefix, errors=errors)
-        return render_to_string('wagtailadmin/block_forms/stream_member.html', {
+        return render_to_string('wblocks/block_forms/stream_member.html', {
             'child_blocks': self.child_blocks.values(),
             'block_type_name': block_type_name,
             'prefix': prefix,
@@ -91,8 +91,8 @@ class BaseStreamBlock(Block):
     @property
     def media(self):
         return forms.Media(js=[
-            static('wagtailadmin/js/blocks/sequence.js'),
-            static('wagtailadmin/js/blocks/stream.js')
+            static('wblocks/js/blocks/sequence.js'),
+            static('wblocks/js/blocks/stream.js')
         ])
 
     def js_initializer(self):
@@ -141,7 +141,7 @@ class BaseStreamBlock(Block):
             for (i, child) in enumerate(valid_children)
         ]
 
-        return render_to_string('wagtailadmin/block_forms/stream.html', {
+        return render_to_string('wblocks/block_forms/stream.html', {
             'prefix': prefix,
             'list_members_html': list_members_html,
             'child_blocks': sorted(self.child_blocks.values(), key=lambda child_block: child_block.meta.group),

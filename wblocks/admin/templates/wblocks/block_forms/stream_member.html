@@ -1,4 +1,4 @@
-{% extends "wagtailadmin/block_forms/sequence_member.html" %}
+{% extends "wblocks/block_forms/sequence_member.html" %}
 {% load i18n %}
 
 {% block hidden_fields %}
@@ -18,5 +18,5 @@
 {% endblock %}
 
 {% block footer_controls %}
-    {% include "wagtailadmin/block_forms/stream_menu.html" with menu_id=prefix|add:"-appendmenu" state="closed" %}
+    {% include "wblocks/block_forms/stream_menu.html" with menu_id=prefix|add:"-appendmenu" state="closed" %}
 {% endblock %}

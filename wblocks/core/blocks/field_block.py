@@ -35,7 +35,7 @@ class FieldBlock(Block):
             widget_html = widget.render(prefix, field_value, attrs=widget_attrs)
             widget_has_rendered_errors = False
 
-        return render_to_string('wagtailadmin/block_forms/field.html', {
+        return render_to_string('wblocks/block_forms/field.html', {
             'name': self.name,
             'classes': self.meta.classname,
             'widget': widget_html,
@@ -250,7 +250,7 @@ class DateBlock(FieldBlock):
     @property
     def media(self):
         return forms.Media(js=[
-            'wagtailadmin/js/vendor/jquery.datetimepicker.js',
+            'wblocks/js/vendor/jquery.datetimepicker.js',
         ])
 
     def to_python(self, value):
@@ -288,7 +288,7 @@ class TimeBlock(FieldBlock):
     @property
     def media(self):
         return forms.Media(js=[
-            'wagtailadmin/js/vendor/jquery.datetimepicker.js',
+            'wblocks/js/vendor/jquery.datetimepicker.js',
         ])
 
     class Meta:
@@ -320,7 +320,7 @@ class DateTimeBlock(FieldBlock):
     @property
     def media(self):
         return forms.Media(js=[
-            'wagtailadmin/js/vendor/jquery.datetimepicker.js',
+            'wblocks/js/vendor/jquery.datetimepicker.js',
         ])
 
     class Meta:
