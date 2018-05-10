@@ -11,22 +11,11 @@ from django.template.loader import render_to_string
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 
-from wblocks.core.utils import cautious_slugify as _cautious_slugify
 from wblocks.core.utils import camelcase_to_underscore, escape_script
 
 register = template.Library()
 
 register.filter('intcomma', intcomma)
-
-
-@register.filter("ellipsistrim")
-def ellipsistrim(value, max_length):
-    if len(value) > max_length:
-        truncd_val = value[:max_length]
-        if not len(value) == (max_length + 1) and value[max_length + 1] != " ":
-            truncd_val = truncd_val[:truncd_val.rfind(" ")]
-        return truncd_val + "…"
-    return value
 
 
 @register.filter
@@ -49,38 +38,6 @@ def widgettype(bound_field):
             return camelcase_to_underscore(bound_field.widget.__class__.__name__)
         except AttributeError:
             return ""
-
-
-@register.simple_tag
-def hook_output(hook_name):
-    """
-    Example: {% hook_output 'insert_editor_css' %}
-    Whenever we have a hook whose functions take no parameters and return a string, this tag can be used
-    to output the concatenation of all of those return values onto the page.
-    Note that the output is not escaped - it is the hook function's responsibility to escape unsafe content.
-    """
-    snippets = [fn() for fn in hooks.get_hooks(hook_name)]
-    return mark_safe(''.join(snippets))
-
-
-@register.simple_tag
-def usage_count_enabled():
-    return getattr(settings, 'WAGTAIL_USAGE_COUNT_ENABLED', False)
-
-
-@register.simple_tag
-def base_url_setting():
-    return getattr(settings, 'BASE_URL', None)
-
-
-@register.simple_tag
-def allow_unicode_slugs():
-    return getattr(settings, 'WAGTAIL_ALLOW_UNICODE_SLUGS', True)
-
-
-@register.simple_tag
-def auto_update_preview():
-    return getattr(settings, 'WAGTAIL_AUTO_UPDATE_PREVIEW', False)
 
 
 class EscapeScriptNode(template.Node):
@@ -132,12 +89,6 @@ def has_unrendered_errors(bound_field):
     the widget does not support the render_with_errors method
     """
     return bound_field.errors and not hasattr(bound_field.field.widget, 'render_with_errors')
-
-
-@register.filter(is_safe=True)
-@stringfilter
-def cautious_slugify(value):
-    return _cautious_slugify(value)
 
 
 @register.filter('abs')

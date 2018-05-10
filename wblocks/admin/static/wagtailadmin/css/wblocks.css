@@ -262,10 +262,10 @@ a.button.button-small{line-height:1.85em}
   .error textarea{border-color:#cd3238;background-color:#feedee}
 .boolean_field .help,.radio .help{opacity:1}
 .date_field .input,.date_time_field .input,.iconfield .input,.time_field .input,.url_field .input{position:relative}
-.date_field .input:after,.date_field .input:before,.date_time_field .input:after,.date_time_field .input:before,.iconfield .input:after,.iconfield .input:before,.time_field .input:after,.time_field .input:before,.url_field .input:after,.url_field .input:before{font-family:wagtail;position:absolute;top:.5em;line-height:100%;font-size:2em;color:#d9d9d9}
+.date_field .input:after,.date_field .input:before,.date_time_field .input:after,.date_time_field .input:before,.iconfield .input:after,.iconfield .input:before,.time_field .input:after,.time_field .input:before,.url_field .input:after,.url_field .input:before{font-family:wagtail;position:absolute;top:.09em;line-height:100%;font-size:2em;color:#d9d9d9}
 .date_field .input:before,.date_time_field .input:before,.iconfield .input:before,.time_field .input:before,.url_field .input:before{left:.3em}
 .date_field .input:after,.date_time_field .input:after,.iconfield .input:after,.time_field .input:after,.url_field .input:after{right:.5em}
-.date_field input:not([type=button]),.date_field input:not([type=checkbox]),.date_field input:not([type=radio]),.date_field input:not([type=submit]),.date_time_field input:not([type=button]),.date_time_field input:not([type=checkbox]),.date_time_field input:not([type=radio]),.date_time_field input:not([type=submit]),.iconfield input:not([type=button]),.iconfield input:not([type=checkbox]),.iconfield input:not([type=radio]),.iconfield input:not([type=submit]),.time_field input:not([type=button]),.time_field input:not([type=checkbox]),.time_field input:not([type=radio]),.time_field input:not([type=submit]),.url_field input:not([type=button]),.url_field input:not([type=checkbox]),.url_field input:not([type=radio]),.url_field input:not([type=submit]){padding-left:2.5em}
+.date_field input:not([type=button]),.date_field input:not([type=checkbox]),.date_field input:not([type=radio]),.date_field input:not([type=submit]),.date_time_field input:not([type=button]),.date_time_field input:not([type=checkbox]),.date_time_field input:not([type=radio]),.date_time_field input:not([type=submit]),.iconfield input:not([type=button]),.iconfield input:not([type=checkbox]),.iconfield input:not([type=radio]),.iconfield input:not([type=submit]),.time_field input:not([type=button]),.time_field input:not([type=checkbox]),.time_field input:not([type=radio]),.time_field input:not([type=submit]),.url_field input:not([type=button]),.url_field input:not([type=checkbox]),.url_field input:not([type=radio]),.url_field input:not([type=submit]){padding-left:2.8em}
 .date_field.field-small .input:after,.date_field.field-small .input:before,.date_time_field.field-small .input:after,.date_time_field.field-small .input:before,.iconfield.field-small .input:after,.iconfield.field-small .input:before,.time_field.field-small .input:after,.time_field.field-small .input:before,.url_field.field-small .input:after,.url_field.field-small .input:before{font-size:1.3rem;top:.3em}
 .date_field.field-small .input:before,.date_time_field.field-small .input:before,.iconfield.field-small .input:before,.time_field.field-small .input:before,.url_field.field-small .input:before{left:.5em}
 .date_field.field-small .input:after,.date_time_field.field-small .input:after,.iconfield.field-small .input:after,.time_field.field-small .input:after,.url_field.field-small .input:after{right:.5em}
@@ -315,7 +315,6 @@ a.button.button-small{line-height:1.85em}
 .unlist,.unlist li{list-style-type:none;font-style:normal}
 .overflow{overflow:auto}
 
-/*
 
 .xdsoft_datetimepicker{box-shadow:0 5px 10px -5px rgba(0,0,0,.4);background:#fff;border:1px solid #54d0d0;padding:8px;padding-left:0;padding-top:2px;position:absolute;z-index:5;box-sizing:border-box;display:none}
 .xdsoft_datetimepicker *{box-sizing:border-box;padding:0;margin:0}
@@ -371,8 +370,6 @@ a.button.button-small{line-height:1.85em}
 .xdsoft_scroller_box{position:relative}
 .xdsoft_scrollbar{position:absolute;width:7px;right:0;top:0;bottom:0;cursor:pointer}
 .xdsoft_scrollbar>.xdsoft_scroller{background:#ccc!important;height:20px;border-radius:3px}
-
-*/
 
 
 
@@ -529,5 +526,5 @@ form .aligned .button.bicolor {padding: 0 1.4em 0 3.7em;}
 }
 
 .wide input,
- .wide textarea{font-size:1em; width: 90%;}
+ .wide textarea{ width: 90%; }
 

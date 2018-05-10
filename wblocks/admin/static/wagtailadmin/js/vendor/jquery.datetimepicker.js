@@ -1,3 +1,7 @@
+if (jQuery == undefined) {
+  jQuery = django.jQuery;
+}
+
 /**
  * @preserve jQuery DateTimePicker plugin v2.3.8
  * @homepage http://xdsoft.net/jqplugins/datetimepicker/

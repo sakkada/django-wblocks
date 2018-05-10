@@ -11,9 +11,6 @@ from django.utils.functional import cached_property
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-# from wblocks.core.rich_text import RichText
-from wblocks.core.utils import resolve_model_string
-
 from .base import Block
 
 
@@ -250,6 +247,12 @@ class DateBlock(FieldBlock):
         field_kwargs.update(self.field_options)
         return forms.DateField(**field_kwargs)
 
+    @property
+    def media(self):
+        return forms.Media(js=[
+            'wagtailadmin/js/vendor/jquery.datetimepicker.js',
+        ])
+
     def to_python(self, value):
         # Serialising to JSON uses DjangoJSONEncoder, which converts date/time objects to strings.
         # The reverse does not happen on decoding, because there's no way to know which strings
@@ -282,6 +285,12 @@ class TimeBlock(FieldBlock):
         else:
             return parse_time(value)
 
+    @property
+    def media(self):
+        return forms.Media(js=[
+            'wagtailadmin/js/vendor/jquery.datetimepicker.js',
+        ])
+
     class Meta:
         icon = 'time'
 
@@ -307,6 +316,12 @@ class DateTimeBlock(FieldBlock):
             return value
         else:
             return parse_datetime(value)
+
+    @property
+    def media(self):
+        return forms.Media(js=[
+            'wagtailadmin/js/vendor/jquery.datetimepicker.js',
+        ])
 
     class Meta:
         icon = 'date'
@@ -448,54 +463,6 @@ class ChoiceBlock(FieldBlock):
         icon = 'placeholder'
 
 
-# class RichTextBlock(FieldBlock):
-#
-#     def __init__(self, required=True, help_text=None, editor='default', features=None, **kwargs):
-#         self.field_options = {'required': required, 'help_text': help_text}
-#        self.editor = editor
-#        self.features = features
-#        super(RichTextBlock, self).__init__(**kwargs)
-#
-#    def get_default(self):
-#        if isinstance(self.meta.default, RichText):
-#            return self.meta.default
-#        else:
-#            return RichText(self.meta.default)
-#
-#    def to_python(self, value):
-#        # convert a source-HTML string from the JSONish representation
-#        # to a RichText object
-#        return RichText(value)
-#
-#    def get_prep_value(self, value):
-#        # convert a RichText object back to a source-HTML string to go into
-#        # the JSONish representation
-#        return value.source
-#
-#    @cached_property
-#    def field(self):
-#        from wblocks.admin.rich_text import get_rich_text_editor_widget
-#        return forms.CharField(
-#            widget=get_rich_text_editor_widget(self.editor, features=self.features),
-#            **self.field_options
-#        )
-#
-#    def value_for_form(self, value):
-#        # Rich text editors take the source-HTML string as input (and takes care
-#        # of expanding it for the purposes of the editor)
-#        return value.source
-#
-#    def value_from_form(self, value):
-#        # Rich text editors return a source-HTML string; convert to a RichText object
-#        return RichText(value)
-#
-#    def get_searchable_content(self, value):
-#        return [force_text(value.source)]
-#
-#    class Meta:
-#        icon = 'doc-full'
-
-
 class RawHTMLBlock(FieldBlock):
 
     def __init__(self, required=True, help_text=None, max_length=None, min_length=None, **kwargs):
@@ -594,82 +561,10 @@ class ChooserBlock(FieldBlock):
         icon = 'placeholder'
 
 
-# class PageChooserBlock(ChooserBlock):
-# 
-#     # TODO: rename target_model to page_type
-#     def __init__(self, target_model=None, can_choose_root=False,
-#                  **kwargs):
-#         if target_model:
-#             # Convert single string/model into a list
-#             if not isinstance(target_model, (list, tuple)):
-#                 target_model = [target_model]
-#         else:
-#             target_model = []
-# 
-#           self._target_models = target_model
-#         self.can_choose_root = can_choose_root
-#         super(PageChooserBlock, self).__init__(**kwargs)
-# 
-#     @cached_property
-#     def target_model(self):
-#           """
-#         Defines the model used by the base ChooserBlock for ID <-> instance
-#         conversions. If a single page type is specified in target_model,
-#         we can use that to get the more specific instance "for free"; otherwise
-#         use the generic Page model.
-#         """
-#           if len(self.target_models) == 1:
-#             return self.target_models[0]
-# 
-#         return resolve_model_string('wagtailcore.Page')
-# 
-#     @cached_property
-#       def target_models(self):
-#         target_models = []
-# 
-#         for target_model in self._target_models:
-#             target_models.append(
-#                 resolve_model_string(target_model)
-#             )
-# 
-#         return target_models
-# 
-#     @cached_property
-#     def widget(self):
-#         from wblocks.admin.widgets import AdminPageChooser
-#         return AdminPageChooser(target_models=self.target_models,
-#                                 can_choose_root=self.can_choose_root)
-# 
-#     def render_basic(self, value, context=None):
-#         if value:
-#             return format_html('<a href="{0}">{1}</a>', value.url, value.title)
-#         else:
-#             return ''
-# 
-#     def deconstruct(self):
-#         name, args, kwargs = super(PageChooserBlock, self).deconstruct()
-# 
-#         if 'target_model' in kwargs:
-#             target_models = []
-# 
-#             for target_model in self.target_models:
-#                 opts = target_model._meta
-#                 target_models.append(
-#                     '{}.{}'.format(opts.app_label, opts.object_name)
-#                 )
-# 
-#             kwargs['target_model'] = target_models
-# 
-#         return name, args, kwargs
-# 
-#     class Meta:
-#         icon = 'redirect'
-
-
 # Ensure that the blocks defined here get deconstructed as wagtailcore.blocks.FooBlock
 # rather than wagtailcore.blocks.field.FooBlock
 block_classes = [
-    FieldBlock, CharBlock, URLBlock, RawHTMLBlock, ChooserBlock, # RichTextBlock, PageChooserBlock,
+    FieldBlock, CharBlock, URLBlock, RawHTMLBlock, ChooserBlock,
     TextBlock, BooleanBlock, DateBlock, TimeBlock,
     DateTimeBlock, ChoiceBlock, EmailBlock, IntegerBlock, FloatBlock,
     DecimalBlock, RegexBlock, BlockQuoteBlock

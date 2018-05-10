@@ -7,20 +7,6 @@ from django.utils.six import string_types
 from wblocks.core.blocks import Block, BlockField, StreamBlock, StreamValue
 
 
-# class RichTextField(models.TextField):
-#     def __init__(self, *args, **kwargs):
-#         self.editor = kwargs.pop('editor', 'default')
-#         self.features = kwargs.pop('features', None)
-#         # TODO: preserve 'editor' and 'features' when deconstructing for migrations
-#         super().__init__(*args, **kwargs)
-#
-#     def formfield(self, **kwargs):
-#         from wagtail.admin.rich_text import get_rich_text_editor_widget
-#         defaults = {'widget': get_rich_text_editor_widget(self.editor, features=self.features)}
-#         defaults.update(kwargs)
-#         return super().formfield(**defaults)
-
-
 # https://github.com/django/django/blob/64200c14e0072ba0ffef86da46b2ea82fd1e019a/django/db/models/fields/subclassing.py#L31-L44
 class Creator(object):
     """
